@@ -4,12 +4,30 @@
 \name{bespoke-package}
 \alias{bespoke}
 \alias{bespoke-package}
-\title{bespoke: What the Package Does (One Line, Title Case)}
+\title{bespoke: Manual Baseline Models}
 \description{
-What the package does (one paragraph).
+Create hand-crafted baseline models for use in the tidymodels framework. These "models"" use user-supplied functions to make predictions, but can be used (for example) in a tidymodels stack.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/macmillancontentscience/bespoke}
+  \item Report bugs at \url{https://github.com/macmillancontentscience/bespoke/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Jon Harmon \email{jonthegeek@gmail.com} (\href{https://orcid.org/0000-0003-4781-4346}{ORCID})
+
+Authors:
+\itemize{
+  \item Jonathan Bratt \email{jonathan.bratt@macmillan.com} (\href{https://orcid.org/0000-0003-2859-0076}{ORCID})
+}
+
+Other contributors:
+\itemize{
+  \item Bedford Freeman & Worth Pub Grp LLC DBA Macmillan Learning [copyright holder]
+}
 
 }
 \keyword{internal}
