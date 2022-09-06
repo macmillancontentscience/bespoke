@@ -4,7 +4,7 @@
 \alias{predict.bespoke_class}
 \title{Predict from a \code{bespoke_class}}
 \usage{
-\method{predict}{bespoke_class}(object, new_data, type = "numeric", ...)
+\method{predict}{bespoke_class}(object, new_data, type = "class", ...)
 }
 \arguments{
 \item{object}{A \code{bespoke_class} object.}
@@ -14,7 +14,8 @@
 \item{type}{A single character. The type of predictions to generate.
 Valid options are:
 \itemize{
-\item \code{"numeric"} for numeric predictions.
+\item \code{"class"} for "hard" class predictions.
+\item \code{"prob"} for class probabilities. (not yet implemented)
 }}
 
 \item{...}{Not used, but required for extensibility.}
@@ -25,15 +26,4 @@ to be the same as the number of rows in \code{new_data}.
 }
 \description{
 Predict from a \code{bespoke_class}
-}
-\examples{
-train <- mtcars[1:20,]
-test <- mtcars[21:32, -1]
-
-# Fit
-mod <- bespoke_class(mpg ~ cyl + log(drat), train)
-
-# Predict, with preprocessing
-predict(mod, test)
-
 }

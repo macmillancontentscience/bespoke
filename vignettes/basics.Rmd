@@ -1,0 +1,82 @@
+---
+title: "Creating a Bespoke Model"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Creating a Bespoke Model}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(bespoke)
+library(modeldata)
+```
+
+Sometimes a simple series of `if` statements are enough for a subject matter expert to make a fairly good prediction from input data.
+In such cases, it can be helpful to hand-craft a function that can make simple predictions on new data.
+However, it is not easy to put such functions on the same footing as actual models for comparison.
+
+With `{bespoke}`, you can construct "fitted models" which behave the same as any other model within the `{tidymodels}` framework, but which use hand-crafted functions for prediction. Here we will demonstrate a simple case.
+
+## Oil Data
+
+We will work with the `oils` data from `{modeldata}`.
+This dataset consists of 96 samples of commercial oils, each of which belongs to one of 7 classes of oil: corn, olive, peanut, pumpkin, rapeseed, soybean, or sunflower.
+
+```{r oil-data}
+data(oils)
+summary(oils)
+```
+
+We'll construct a function to choose a class from some simple properties in the input data.
+
+## Our Hand-Crafted Model Function
+
+For now, we will simply return a random choice for each row of data.
+As we develop this package further we'll create a more realistic use case.
+
+```{r hand-crafted}
+random_baseline <- function(new_data, n_classes) {
+  # Return a number between 1 and n_classes for each row of input.
+  return(
+    sample(seq_len(n_classes), nrow(new_data))
+  )
+}
+```
+
+## "Training" a Model
+
+In this case we need to specifically tell the "model" how many classes we have.
+We will likely make this a standard parameter available to any bespoke functions in the future.
+
+```{r oil-fit}
+oil_fit <- bespoke_class(
+  class ~ ., 
+  oils, 
+  fn = random_baseline, 
+  n_classes = 7
+)
+```
+
+That object will now behave like other model objects!
+
+## Using Our Model
+
+```{r oil-predict}
+oils_no_classes <- oils[, 1:7]
+head(oils_no_classes)
+predict(oil_fit, new_data = head(oils_no_classes))
+```
+
+Note that in this case the predictions are completely random.
+
+```{r oil-predict-again}
+predict(oil_fit, new_data = head(oils_no_classes))
+```

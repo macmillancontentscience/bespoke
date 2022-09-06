@@ -13,24 +13,24 @@ bespoke_class(x, ...)
 
 \method{bespoke_class}{default}(x, ...)
 
-\method{bespoke_class}{data.frame}(x, y, ...)
+\method{bespoke_class}{data.frame}(x, y, fn, ...)
 
-\method{bespoke_class}{matrix}(x, y, ...)
+\method{bespoke_class}{matrix}(x, y, fn, ...)
 
-\method{bespoke_class}{formula}(formula, data, ...)
+\method{bespoke_class}{formula}(formula, data, fn, ...)
 
-\method{bespoke_class}{recipe}(x, data, ...)
+\method{bespoke_class}{recipe}(x, data, fn, ...)
 }
 \arguments{
 \item{x}{Depending on the context:
 \itemize{
 \item A \strong{data frame} of predictors.
 \item A \strong{matrix} of predictors.
-\item A \strong{recipe} specifying a set of preprocessing steps
-created from \code{\link[recipes:recipe]{recipes::recipe()}}.
+\item A \strong{recipe} specifying a set of preprocessing steps created from
+\code{\link[recipes:recipe]{recipes::recipe()}}.
 }}
 
-\item{...}{Not currently used, but required for extensibility.}
+\item{...}{Additional parameters passed on to the model "function."}
 
 \item{y}{When \code{x} is a \strong{data frame} or \strong{matrix}, \code{y} is the outcome
 specified as:
@@ -39,6 +39,11 @@ specified as:
 \item A \strong{matrix} with 1 numeric column.
 \item A numeric \strong{vector}.
 }}
+
+\item{fn}{A function that takes a data.frame as input and returns \emph{a vector}
+(integer, character, or factor) indicating the outcomes as output. We may
+someday extend this for probabilities, especially if later steps in
+tidymodels turn out to really want that.}
 
 \item{formula}{A formula specifying the outcome terms on the left-hand side,
 and the predictor terms on the right-hand side.}
@@ -49,25 +54,13 @@ and the predictor terms on the right-hand side.}
 }}
 }
 \value{
-A \code{bespoke_class} object.
+A \code{bespoke_class} model object.
 }
 \description{
-\code{bespoke_class()} fits a model.
-}
-\examples{
-predictors <- mtcars[, -1]
-outcome <- mtcars[, 1]
-
-# XY interface
-mod <- bespoke_class(predictors, outcome)
-
-# Formula interface
-mod2 <- bespoke_class(mpg ~ ., mtcars)
-
-# Recipes interface
-library(recipes)
-rec <- recipe(mpg ~ ., mtcars)
-rec <- step_log(rec, disp)
-mod3 <- bespoke_class(rec, mtcars)
-
+\code{bespoke_class()} produces a fitted "model," where the model is simply a
+user-supplied function. Note that, despite appearances, the "model" is \emph{not}
+actually trained to fit the data; it is only put into the context of a
+"fitted" model in order to play nice with other tidymodels functions. It
+will, however, return a member of the training outcomes for each input during
+prediction.
 }

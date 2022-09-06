@@ -27,6 +27,10 @@ Imports:
     rlang,
     stats
 Suggests: 
-    recipes
+    knitr,
+    modeldata,
+    recipes,
+    rmarkdown
 URL: https://github.com/macmillancontentscience/bespoke
 BugReports: https://github.com/macmillancontentscience/bespoke/issues
+VignetteBuilder: knitr
