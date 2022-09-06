@@ -171,3 +171,5 @@ predict.bespoke_class <- function(object, new_data, type = "class", ...) {
     )
   )
 }
+
+# Unbreak things.
