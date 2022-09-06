@@ -28,3 +28,5 @@ Imports:
     stats
 Suggests: 
     recipes
+URL: https://github.com/macmillancontentscience/bespoke
+BugReports: https://github.com/macmillancontentscience/bespoke/issues
