@@ -18,7 +18,7 @@ Authors@R: c(
 Description: Create hand-crafted baseline models for use in the tidymodels 
     framework. These "models"" use user-supplied functions to make predictions,
     but can be used (for example) in a tidymodels stack.
-License: MIT + file LICENSE
+License: Apache License (>= 2)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
