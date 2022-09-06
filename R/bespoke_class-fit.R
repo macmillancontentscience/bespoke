@@ -43,9 +43,8 @@
 #'   and the predictor terms on the right-hand side.
 #'
 #' @param fn A function that takes a data.frame as input and returns *a vector*
-#'   (integer, character, or factor) indicating the outcomes as output. We may
-#'   someday extend this for probabilities, especially if later steps in
-#'   tidymodels turn out to really want that.
+#'   (integer, character, or factor) indicating the outcomes as output (with one
+#'   value per input row). We may someday extend this for probabilities.
 #'
 #' @param ... Additional parameters passed on to the model "function."
 #'
@@ -165,10 +164,13 @@ bespoke_class.recipe <- function(x, data, fn, ...) {
 
   # Run a "prediction" to make sure things make sense. These will throw errors
   # if something is wrong.
-  predictions <- fn(head(predictors), ...)
+  predictions <- fn(predictors, ...)
+
+  # Confirm that the number of predictions matches expectations.
+  hardhat::validate_prediction_size(predictions, predictors)
+
+  # Confirm that the predictions can be coerced to match the known outcomes.
   predictions <- .factorize_predictions(predictions, outcome_levels)
-  # TODO: Consider doing this on ALL training data, or maybe letting the user
-  # specify how much to use.
 
   return(
     list(

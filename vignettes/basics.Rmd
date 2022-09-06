@@ -46,7 +46,7 @@ As we develop this package further we'll create a more realistic use case.
 random_baseline <- function(new_data, n_classes) {
   # Return a number between 1 and n_classes for each row of input.
   return(
-    sample(seq_len(n_classes), nrow(new_data))
+    sample(seq_len(n_classes), nrow(new_data), replace = TRUE)
   )
 }
 ```
@@ -80,3 +80,45 @@ Note that in this case the predictions are completely random.
 ```{r oil-predict-again}
 predict(oil_fit, new_data = head(oils_no_classes))
 ```
+
+## Working with Other Models
+
+Of course the main point of doing this is to compare to other models.
+For this use case, `{bespoke}` provides a parsnip-style model, `bespoke()`.
+
+```{r parsnip-style}
+bespoke_spec <- bespoke(fn = random_baseline) %>% 
+  parsnip::set_engine("bespoke", n_classes = 7)
+
+bespoke_fit <- bespoke_spec %>% 
+  parsnip::fit(class ~ ., oils)
+
+predict(bespoke_fit, new_data = head(oils_no_classes), type = "class")
+predict(bespoke_fit, new_data = head(oils_no_classes), type = "prob")
+```
+
+This can be compared to other models as if it's a "real" model.
+
+```{r comparison}
+tree_spec <- parsnip::decision_tree(mode = "classification") %>% 
+  parsnip::set_engine(
+    engine = "rpart"
+  )
+
+oil_set <- workflowsets::workflow_set(
+  preproc = list(class ~ .),
+  models = list(bespoke_spec, tree_spec)
+)
+
+bs_oil <- rsample::bootstraps(oils)
+
+oil_res <- oil_set %>%
+  workflowsets::workflow_map(
+    "fit_resamples",
+    resamples = bs_oil
+  )
+
+workflowsets::rank_results(oil_res)
+```
+
+Unsurprisingly, the decision tree performs much better than the random model.

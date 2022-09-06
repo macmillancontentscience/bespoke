@@ -29,8 +29,10 @@ Imports:
 Suggests: 
     knitr,
     modeldata,
+    parsnip,
     recipes,
-    rmarkdown
+    rmarkdown,
+    workflowsets
 URL: https://github.com/macmillancontentscience/bespoke
 BugReports: https://github.com/macmillancontentscience/bespoke/issues
 VignetteBuilder: knitr

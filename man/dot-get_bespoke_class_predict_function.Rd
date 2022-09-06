@@ -11,7 +11,7 @@
 Valid options are:
 \itemize{
 \item \code{"class"} for "hard" class predictions.
-\item \code{"prob"} for class probabilities. (not yet implemented)
+\item \code{"prob"} for class probabilities.
 }}
 }
 \value{

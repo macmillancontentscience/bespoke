@@ -41,9 +41,8 @@ specified as:
 }}
 
 \item{fn}{A function that takes a data.frame as input and returns \emph{a vector}
-(integer, character, or factor) indicating the outcomes as output. We may
-someday extend this for probabilities, especially if later steps in
-tidymodels turn out to really want that.}
+(integer, character, or factor) indicating the outcomes as output (with one
+value per input row). We may someday extend this for probabilities.}
 
 \item{formula}{A formula specifying the outcome terms on the left-hand side,
 and the predictor terms on the right-hand side.}

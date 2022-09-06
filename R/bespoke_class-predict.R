@@ -22,7 +22,7 @@
 #' Valid options are:
 #'
 #' - `"class"` for "hard" class predictions.
-#' - `"prob"` for class probabilities. (not yet implemented)
+#' - `"prob"` for class probabilities.
 #'
 #' @param ... Not used, but required for extensibility.
 #'
@@ -32,9 +32,12 @@
 #' to be the same as the number of rows in `new_data`.
 #'
 #' @export
-predict.bespoke_class <- function(object, new_data, type = "class", ...) {
+predict.bespoke_class <- function(object,
+                                  new_data,
+                                  type = c("class", "prob"),
+                                  ...) {
   forged <- hardhat::forge(new_data, object$blueprint)
-  rlang::arg_match(type)
+  type <- rlang::arg_match(type)
   .predict_bespoke_class_bridge(type, object, forged$predictors)
 }
 
@@ -74,7 +77,8 @@ predict.bespoke_class <- function(object, new_data, type = "class", ...) {
 .get_bespoke_class_predict_function <- function(type) {
   switch(
     type,
-    class = .predict_bespoke_class_class
+    class = .predict_bespoke_class_class,
+    prob = .predict_bespoke_class_prob
   )
 }
 
@@ -99,6 +103,33 @@ predict.bespoke_class <- function(object, new_data, type = "class", ...) {
   )
 
   return(hardhat::spruce_class(predictions))
+}
+
+#' Predict Probabilities for Bespoke Classification Models
+#'
+#' @inheritParams .predict_bespoke_class_bridge
+#'
+#' @return A tibble with class probabilities (1 or 0).
+#' @keywords internal
+.predict_bespoke_class_prob <- function(model, predictors) {
+  # Start with the hard classes.
+  predictions <- .predict_bespoke_class_class(model, predictors)
+
+  # One-hot encode the predictions, as doubles.
+  predictions_wide <- vapply(
+    model$outcome_levels,
+    function(this_outcome) {
+      as.numeric(this_outcome == predictions$.pred_class)
+    },
+    rep(1, nrow(predictions))
+  )
+
+  return(
+    hardhat::spruce_prob(
+      pred_levels = model$outcome_levels,
+      prob_matrix = predictions_wide
+    )
+  )
 }
 
 #' Coerce Predictions to Factor
@@ -171,5 +202,3 @@ predict.bespoke_class <- function(object, new_data, type = "class", ...) {
     )
   )
 }
-
-# Unbreak things.

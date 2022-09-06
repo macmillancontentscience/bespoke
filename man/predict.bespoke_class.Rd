@@ -4,7 +4,7 @@
 \alias{predict.bespoke_class}
 \title{Predict from a \code{bespoke_class}}
 \usage{
-\method{predict}{bespoke_class}(object, new_data, type = "class", ...)
+\method{predict}{bespoke_class}(object, new_data, type = c("class", "prob"), ...)
 }
 \arguments{
 \item{object}{A \code{bespoke_class} object.}
@@ -15,7 +15,7 @@
 Valid options are:
 \itemize{
 \item \code{"class"} for "hard" class predictions.
-\item \code{"prob"} for class probabilities. (not yet implemented)
+\item \code{"prob"} for class probabilities.
 }}
 
 \item{...}{Not used, but required for extensibility.}
