@@ -57,7 +57,7 @@ In this case we need to specifically tell the "model" how many classes we have.
 We will likely make this a standard parameter available to any bespoke functions in the future.
 
 ```{r oil-fit}
-oil_fit <- bespoke_class(
+oil_fit <- bespoke_classification(
   class ~ ., 
   oils, 
   fn = random_baseline, 

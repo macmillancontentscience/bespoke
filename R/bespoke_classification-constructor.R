@@ -21,12 +21,12 @@
 #'
 #' @return A [hardhat::new_model()].
 #' @keywords internal
-.new_bespoke_class <- function(fn, dots, outcome_levels, blueprint) {
+.new_bespoke_classification <- function(fn, dots, outcome_levels, blueprint) {
   hardhat::new_model(
     fn = fn,
     dots = dots,
     outcome_levels = outcome_levels,
     blueprint = blueprint,
-    class = "bespoke_class"
+    class = "bespoke_classification"
   )
 }

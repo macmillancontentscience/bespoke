@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#' Predict from a `bespoke_class`
+#' Predict from a `bespoke_classification`
 #'
-#' @param object A `bespoke_class` object.
+#' @param object A `bespoke_classification` object.
 #'
 #' @param new_data A data frame or matrix of new predictors.
 #'
@@ -32,23 +32,23 @@
 #' to be the same as the number of rows in `new_data`.
 #'
 #' @export
-predict.bespoke_class <- function(object,
+predict.bespoke_classification <- function(object,
                                   new_data,
                                   type = c("class", "prob"),
                                   ...) {
   forged <- hardhat::forge(new_data, object$blueprint)
   type <- rlang::arg_match(type)
-  .predict_bespoke_class_bridge(type, object, forged$predictors)
+  .predict_bespoke_classification_bridge(type, object, forged$predictors)
 }
 
 
 # ------------------------------------------------------------------------------
 # Bridge
 
-#' Prepare bespoke_class Data for Prediction
+#' Prepare bespoke_classification Data for Prediction
 #'
-#' @inheritParams predict.bespoke_class
-#' @param model A `bespoke_class` model object. hardhat switches to model from
+#' @inheritParams predict.bespoke_classification
+#' @param model A `bespoke_classification` model object. hardhat switches to model from
 #'   here forward, I think because the object has to actually be a model at this
 #'   point for anything to make sense, and they don't have to fight the predict
 #'   generic for the name.
@@ -56,8 +56,8 @@ predict.bespoke_class <- function(object,
 #'
 #' @return A tibble with output dependent on type.
 #' @keywords internal
-.predict_bespoke_class_bridge <- function(type, model, predictors) {
-  predict_function <- .get_bespoke_class_predict_function(type)
+.predict_bespoke_classification_bridge <- function(type, model, predictors) {
+  predict_function <- .get_bespoke_classification_predict_function(type)
   predictions <- predict_function(model, predictors)
 
   hardhat::validate_prediction_size(predictions, predictors)
@@ -70,15 +70,15 @@ predict.bespoke_class <- function(object,
 #' This is pointless right now but I'm keeping it in place to make it relatively
 #' easy to implement probabilities.
 #'
-#' @inheritParams predict.bespoke_class
+#' @inheritParams predict.bespoke_classification
 #'
 #' @return The predict function.
 #' @keywords internal
-.get_bespoke_class_predict_function <- function(type) {
+.get_bespoke_classification_predict_function <- function(type) {
   switch(
     type,
-    class = .predict_bespoke_class_class,
-    prob = .predict_bespoke_class_prob
+    class = .predict_bespoke_classification_class,
+    prob = .predict_bespoke_classification_prob
   )
 }
 
@@ -87,11 +87,11 @@ predict.bespoke_class <- function(object,
 
 #' Predict Classes for Bespoke Classification Models
 #'
-#' @inheritParams .predict_bespoke_class_bridge
+#' @inheritParams .predict_bespoke_classification_bridge
 #'
 #' @return A tibble with a factor column identifying the outcome.
 #' @keywords internal
-.predict_bespoke_class_class <- function(model, predictors) {
+.predict_bespoke_classification_class <- function(model, predictors) {
   predictions <- rlang::exec(
     .fn = model$fn,
     predictors,
@@ -107,13 +107,13 @@ predict.bespoke_class <- function(object,
 
 #' Predict Probabilities for Bespoke Classification Models
 #'
-#' @inheritParams .predict_bespoke_class_bridge
+#' @inheritParams .predict_bespoke_classification_bridge
 #'
 #' @return A tibble with class probabilities (1 or 0).
 #' @keywords internal
-.predict_bespoke_class_prob <- function(model, predictors) {
+.predict_bespoke_classification_prob <- function(model, predictors) {
   # Start with the hard classes.
-  predictions <- .predict_bespoke_class_class(model, predictors)
+  predictions <- .predict_bespoke_classification_class(model, predictors)
 
   # One-hot encode the predictions, as doubles.
   predictions_wide <- vapply(

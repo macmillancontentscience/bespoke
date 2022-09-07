@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#' Fit a `bespoke_class`
+#' Fit a `bespoke_classification`
 #'
-#' `bespoke_class()` produces a fitted "model," where the model is simply a
+#' `bespoke_classification()` produces a fitted "model," where the model is simply a
 #' user-supplied function. Note that, despite appearances, the "model" is *not*
 #' actually trained to fit the data; it is only put into the context of a
 #' "fitted" model in order to play nice with other tidymodels functions. It
@@ -50,58 +50,58 @@
 #'
 #' @return
 #'
-#' A `bespoke_class` model object.
+#' A `bespoke_classification` model object.
 #'
 #' @export
-bespoke_class <- function(x, ...) {
-  UseMethod("bespoke_class")
+bespoke_classification <- function(x, ...) {
+  UseMethod("bespoke_classification")
 
   # TODO: Ideally all methods should leave character vectors in the predictors
   # as-is, but right now that would break, so we aren't implementing that yet.
 }
 
 #' @export
-#' @rdname bespoke_class
-bespoke_class.default <- function(x, ...) {
-  stop("`bespoke_class()` is not defined for a '", class(x)[1], "'.", call. = FALSE)
+#' @rdname bespoke_classification
+bespoke_classification.default <- function(x, ...) {
+  stop("`bespoke_classification()` is not defined for a '", class(x)[1], "'.", call. = FALSE)
 }
 
 # XY method - data frame
 
 #' @export
-#' @rdname bespoke_class
-bespoke_class.data.frame <- function(x, y, fn, ...) {
+#' @rdname bespoke_classification
+bespoke_classification.data.frame <- function(x, y, fn, ...) {
   processed <- hardhat::mold(x, y)
   return(
-    .bespoke_class_bridge(processed, fn = fn, ...)
+    .bespoke_classification_bridge(processed, fn = fn, ...)
   )
 }
 
 # XY method - matrix
 
 #' @export
-#' @rdname bespoke_class
-bespoke_class.matrix <- function(x, y, fn, ...) {
+#' @rdname bespoke_classification
+bespoke_classification.matrix <- function(x, y, fn, ...) {
   processed <- hardhat::mold(x, y)
-  .bespoke_class_bridge(processed, fn = fn, ...)
+  .bespoke_classification_bridge(processed, fn = fn, ...)
 }
 
 # Formula method
 
 #' @export
-#' @rdname bespoke_class
-bespoke_class.formula <- function(formula, data, fn, ...) {
+#' @rdname bespoke_classification
+bespoke_classification.formula <- function(formula, data, fn, ...) {
   processed <- hardhat::mold(formula, data)
-  .bespoke_class_bridge(processed, fn = fn, ...)
+  .bespoke_classification_bridge(processed, fn = fn, ...)
 }
 
 # Recipe method
 
 #' @export
-#' @rdname bespoke_class
-bespoke_class.recipe <- function(x, data, fn, ...) {
+#' @rdname bespoke_classification
+bespoke_classification.recipe <- function(x, data, fn, ...) {
   processed <- hardhat::mold(x, data)
-  .bespoke_class_bridge(processed, fn = fn, ...)
+  .bespoke_classification_bridge(processed, fn = fn, ...)
 }
 
 # ------------------------------------------------------------------------------
@@ -109,28 +109,28 @@ bespoke_class.recipe <- function(x, data, fn, ...) {
 
 #' Create the "Model"
 #'
-#' This bridge is the same for each path into bespoke_class. It takes the
+#' This bridge is the same for each path into bespoke_classification. It takes the
 #' processed predictors (which are now a tibble) and outcome (which is now a
 #' factor) and, in this case, makes sure they make sense with the supplied
 #' function.
 #'
-#' @inheritParams .bespoke_class_impl
+#' @inheritParams .bespoke_classification_impl
 #' @param processed Processed inputs molded by hardhat.
 #'
-#' @return A `bespoke_class` model object.
+#' @return A `bespoke_classification` model object.
 #' @keywords internal
-.bespoke_class_bridge <- function(processed, fn, ...) {
+.bespoke_classification_bridge <- function(processed, fn, ...) {
   predictors <- processed$predictors
   outcome <- processed$outcomes[[1]]
 
   # We don't have to actually "fit" this, but I left in the "fit" step to
   # demonstrate the hardhat format. Really all this "fit" function does is
   # validate that the data makes sense with the function.
-  fit <- .bespoke_class_impl(
+  fit <- .bespoke_classification_impl(
     predictors, outcome, fn = fn, ...
   )
 
-  .new_bespoke_class(
+  .new_bespoke_classification(
     fn = fit$fn,
     dots = fit$dots,
     outcome_levels = fit$outcome_levels,
@@ -154,7 +154,7 @@ bespoke_class.recipe <- function(x, data, fn, ...) {
 #'
 #' @return A list with elements `fn`, `dots`, and `outcome_levels`.
 #' @keywords internal
-.bespoke_class_impl <- function(predictors, outcome, fn, ...) {
+.bespoke_classification_impl <- function(predictors, outcome, fn, ...) {
   # Log the extra parameters that we've been passing along.
   dots <- rlang::list2(...)
 

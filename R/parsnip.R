@@ -35,7 +35,7 @@
     value = list(
       interface = "formula",
       protect = c("formula", "data"),
-      func = c(fun = "bespoke_class"),
+      func = c(fun = "bespoke_classification"),
       defaults = list()
     )
   )
@@ -98,7 +98,7 @@ bespoke_env$parsnip_added <- FALSE
 #' is not tailored at all to better predict the training data. Such models can
 #' be useful for establishing a basline which any true models should outperform.
 #'
-#' @inheritParams bespoke_class
+#' @inheritParams bespoke_classification
 #' @param mode A single character string for the prediction outcome mode. Online
 #'   "classification" is valid.
 #' @param engine A single character string specifying what computational engine
