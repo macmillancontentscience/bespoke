@@ -14,10 +14,10 @@ Valid options are:
 \item \code{"prob"} for class probabilities.
 }}
 
-\item{model}{A \code{bespoke_classification} model object. hardhat switches to model from
-here forward, I think because the object has to actually be a model at this
-point for anything to make sense, and they don't have to fight the predict
-generic for the name.}
+\item{model}{A \code{bespoke_classification} model object. hardhat switches to
+model from here forward, I think because the object has to actually be a
+model at this point for anything to make sense, and they don't have to
+fight the predict generic for the name.}
 
 \item{predictors}{Forged predictor data.}
 }

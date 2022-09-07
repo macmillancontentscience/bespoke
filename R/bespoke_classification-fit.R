@@ -14,10 +14,10 @@
 
 #' Fit a `bespoke_classification`
 #'
-#' `bespoke_classification()` produces a fitted "model," where the model is simply a
-#' user-supplied function. Note that, despite appearances, the "model" is *not*
-#' actually trained to fit the data; it is only put into the context of a
-#' "fitted" model in order to play nice with other tidymodels functions. It
+#' `bespoke_classification()` produces a fitted "model," where the model is
+#' simply a user-supplied function. Note that, despite appearances, the "model"
+#' is *not* actually trained to fit the data; it is only put into the context of
+#' a "fitted" model in order to play nice with other tidymodels functions. It
 #' will, however, return a member of the training outcomes for each input during
 #' prediction.
 #'
@@ -63,7 +63,12 @@ bespoke_classification <- function(x, ...) {
 #' @export
 #' @rdname bespoke_classification
 bespoke_classification.default <- function(x, ...) {
-  stop("`bespoke_classification()` is not defined for a '", class(x)[1], "'.", call. = FALSE)
+  stop(
+    "`bespoke_classification()` is not defined for a '",
+    class(x)[1],
+    "'.",
+    call. = FALSE
+  )
 }
 
 # XY method - data frame
@@ -109,8 +114,8 @@ bespoke_classification.recipe <- function(x, data, fn, ...) {
 
 #' Create the "Model"
 #'
-#' This bridge is the same for each path into bespoke_classification. It takes the
-#' processed predictors (which are now a tibble) and outcome (which is now a
+#' This bridge is the same for each path into bespoke_classification. It takes
+#' the processed predictors (which are now a tibble) and outcome (which is now a
 #' factor) and, in this case, makes sure they make sense with the supplied
 #' function.
 #'

@@ -24,15 +24,17 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Imports: 
     hardhat,
-    rlang,
-    stats
+    rlang
 Suggests: 
     knitr,
     modeldata,
     parsnip,
     recipes,
     rmarkdown,
+    rsample,
+    testthat (>= 3.0.0),
     workflowsets
 URL: https://github.com/macmillancontentscience/bespoke
 BugReports: https://github.com/macmillancontentscience/bespoke/issues
 VignetteBuilder: knitr
+Config/testthat/edition: 3

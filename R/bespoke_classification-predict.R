@@ -48,10 +48,10 @@ predict.bespoke_classification <- function(object,
 #' Prepare bespoke_classification Data for Prediction
 #'
 #' @inheritParams predict.bespoke_classification
-#' @param model A `bespoke_classification` model object. hardhat switches to model from
-#'   here forward, I think because the object has to actually be a model at this
-#'   point for anything to make sense, and they don't have to fight the predict
-#'   generic for the name.
+#' @param model A `bespoke_classification` model object. hardhat switches to
+#'   model from here forward, I think because the object has to actually be a
+#'   model at this point for anything to make sense, and they don't have to
+#'   fight the predict generic for the name.
 #' @param predictors Forged predictor data.
 #'
 #' @return A tibble with output dependent on type.
@@ -159,7 +159,7 @@ predict.bespoke_classification <- function(object,
   expected_levels <- seq_along(outcome_levels)
   if (any(!(predictions %in% expected_levels))) {
     rlang::abort(
-      "Predicted classes are outside the range of the training training data."
+      "Predicted classes are outside the range of the training data."
     )
   }
 
@@ -191,7 +191,7 @@ predict.bespoke_classification <- function(object,
 .factorize_predictions.character <- function(predictions, outcome_levels) {
   if (any(!(predictions %in% outcome_levels))) {
     rlang::abort(
-      "Predicted classes are outside the range of the training training data."
+      "Predicted classes are outside the range of the training data."
     )
   }
 

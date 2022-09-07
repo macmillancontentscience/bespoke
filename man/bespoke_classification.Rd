@@ -56,10 +56,10 @@ and the predictor terms on the right-hand side.}
 A \code{bespoke_classification} model object.
 }
 \description{
-\code{bespoke_classification()} produces a fitted "model," where the model is simply a
-user-supplied function. Note that, despite appearances, the "model" is \emph{not}
-actually trained to fit the data; it is only put into the context of a
-"fitted" model in order to play nice with other tidymodels functions. It
+\code{bespoke_classification()} produces a fitted "model," where the model is
+simply a user-supplied function. Note that, despite appearances, the "model"
+is \emph{not} actually trained to fit the data; it is only put into the context of
+a "fitted" model in order to play nice with other tidymodels functions. It
 will, however, return a member of the training outcomes for each input during
 prediction.
 }

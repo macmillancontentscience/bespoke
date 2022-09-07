@@ -17,8 +17,8 @@
 A \code{bespoke_classification} model object.
 }
 \description{
-This bridge is the same for each path into bespoke_classification. It takes the
-processed predictors (which are now a tibble) and outcome (which is now a
+This bridge is the same for each path into bespoke_classification. It takes
+the processed predictors (which are now a tibble) and outcome (which is now a
 factor) and, in this case, makes sure they make sense with the supplied
 function.
 }
