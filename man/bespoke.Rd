@@ -7,7 +7,7 @@
 bespoke(mode = "classification", engine = "bespoke", fn = NULL)
 }
 \arguments{
-\item{mode}{A single character string for the prediction outcome mode. Online
+\item{mode}{A single character string for the prediction outcome mode. Only
 "classification" is valid.}
 
 \item{engine}{A single character string specifying what computational engine
@@ -25,5 +25,6 @@ A specification for a model.
 "Training" such a model only consists of verifying that the output is
 consistent with the types of outputs seen in the training data; the function
 is not tailored at all to better predict the training data. Such models can
-be useful for establishing a basline which any true models should outperform.
+be useful for establishing a baseline which any true models should
+outperform.
 }
