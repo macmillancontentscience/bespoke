@@ -12,11 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+#' Construct a Bespoke Classification Model Object
+#'
+#' @param fn A user-supplied function.
+#' @param dots Additional parameters to pass onto the function.
+#' @param outcome_levels The levels that were present in the training data.
+#' @param blueprint The `{hardhat}` blueprint to prepare the predictors.
+#'
+#' @return A [hardhat::new_model()].
 #' @keywords internal
-"_PACKAGE"
-
-# The following block is used by usethis to automatically manage
-# roxygen namespace tags. Modify with care!
-## usethis namespace: start
-## usethis namespace: end
-NULL
+.new_bespoke_classification <- function(fn, dots, outcome_levels, blueprint) {
+  hardhat::new_model(
+    fn = fn,
+    dots = dots,
+    outcome_levels = outcome_levels,
+    blueprint = blueprint,
+    class = "bespoke_classification"
+  )
+}
