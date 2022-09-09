@@ -2,10 +2,12 @@
 % Please edit documentation in R/bespoke-package.R
 \docType{package}
 \name{bespoke-package}
-\alias{bespoke}
 \alias{bespoke-package}
+\alias{_PACKAGE}
 \title{bespoke: Manual Baseline Models}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Create hand-crafted baseline models for use in the tidymodels framework. These "models"" use user-supplied functions to make predictions, but can be used (for example) in a tidymodels stack.
 }
 \seealso{

@@ -13,6 +13,7 @@
 # limitations under the License.
 
 #' @keywords internal
+#' @aliases bespoke-package
 "_PACKAGE"
 
 # The following block is used by usethis to automatically manage
