@@ -26,6 +26,7 @@ Imports:
     hardhat,
     rlang
 Suggests: 
+    covr,
     knitr,
     modeldata,
     parsnip,

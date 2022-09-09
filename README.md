@@ -8,6 +8,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/macmillancontentscience/bespoke/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/macmillancontentscience/bespoke/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/macmillancontentscience/bespoke/branch/main/graph/badge.svg)](https://app.codecov.io/gh/macmillancontentscience/bespoke?branch=main)
 <!-- badges: end -->
 
 Sometimes it makes sense to define a simple baseline model
