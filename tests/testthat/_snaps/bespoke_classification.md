@@ -5,20 +5,20 @@
       predict(oil_fit_formula, to_predict, type = "prob")
     Output
       # A tibble: 96 x 7
-         .pred_corn .pred_olive .pred_peanut .pred_pumpkin .pred_rap~1 .pred~2 .pred~3
-              <dbl>       <dbl>        <dbl>         <dbl>       <dbl>   <dbl>   <dbl>
-       1          0           1            0             0           0       0       0
-       2          0           0            0             1           0       0       0
-       3          0           0            1             0           0       0       0
-       4          1           0            0             0           0       0       0
-       5          0           1            0             0           0       0       0
-       6          0           0            0             0           1       0       0
-       7          0           0            1             0           0       0       0
-       8          0           0            0             1           0       0       0
-       9          0           1            0             0           0       0       0
-      10          0           0            0             0           0       0       1
-      # ... with 86 more rows, and abbreviated variable names 1: .pred_rapeseed,
-      #   2: .pred_soybean, 3: .pred_sunflower
+         .pred_corn .pred_olive .pred_peanut .pred_pumpkin .pred_rapeseed
+              <dbl>       <dbl>        <dbl>         <dbl>          <dbl>
+       1          0           1            0             0              0
+       2          0           0            0             1              0
+       3          0           0            1             0              0
+       4          1           0            0             0              0
+       5          0           1            0             0              0
+       6          0           0            0             0              1
+       7          0           0            1             0              0
+       8          0           0            0             1              0
+       9          0           1            0             0              0
+      10          0           0            0             0              0
+      # i 86 more rows
+      # i 2 more variables: .pred_soybean <dbl>, .pred_sunflower <dbl>
 
 # Function outputs are validated.
 
@@ -39,7 +39,7 @@
        8 corn       
        9 corn       
       10 corn       
-      # ... with 86 more rows
+      # i 86 more rows
 
 ---
 
@@ -60,7 +60,7 @@
        8 corn       
        9 corn       
       10 corn       
-      # ... with 86 more rows
+      # i 86 more rows
 
 # It also works in a parsnip context.
 
@@ -81,7 +81,7 @@
        8 pumpkin    
        9 olive      
       10 sunflower  
-      # ... with 86 more rows
+      # i 86 more rows
 
 ---
 
@@ -90,18 +90,18 @@
       predict(bespoke_fit, new_data = to_predict, type = "prob")
     Output
       # A tibble: 96 x 7
-         .pred_corn .pred_olive .pred_peanut .pred_pumpkin .pred_rap~1 .pred~2 .pred~3
-              <dbl>       <dbl>        <dbl>         <dbl>       <dbl>   <dbl>   <dbl>
-       1          0           1            0             0           0       0       0
-       2          0           0            0             1           0       0       0
-       3          0           0            1             0           0       0       0
-       4          1           0            0             0           0       0       0
-       5          0           1            0             0           0       0       0
-       6          0           0            0             0           1       0       0
-       7          0           0            1             0           0       0       0
-       8          0           0            0             1           0       0       0
-       9          0           1            0             0           0       0       0
-      10          0           0            0             0           0       0       1
-      # ... with 86 more rows, and abbreviated variable names 1: .pred_rapeseed,
-      #   2: .pred_soybean, 3: .pred_sunflower
+         .pred_corn .pred_olive .pred_peanut .pred_pumpkin .pred_rapeseed
+              <dbl>       <dbl>        <dbl>         <dbl>          <dbl>
+       1          0           1            0             0              0
+       2          0           0            0             1              0
+       3          0           0            1             0              0
+       4          1           0            0             0              0
+       5          0           1            0             0              0
+       6          0           0            0             0              1
+       7          0           0            1             0              0
+       8          0           0            0             1              0
+       9          0           1            0             0              0
+      10          0           0            0             0              0
+      # i 86 more rows
+      # i 2 more variables: .pred_soybean <dbl>, .pred_sunflower <dbl>
 
