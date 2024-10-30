@@ -3,7 +3,6 @@
 \docType{package}
 \name{bespoke-package}
 \alias{bespoke-package}
-\alias{_PACKAGE}
 \title{bespoke: Manual Baseline Models}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
