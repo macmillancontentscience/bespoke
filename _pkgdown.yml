@@ -1,0 +1,5 @@
+url: https://macmillancontentscience.github.io/bespoke/
+template:
+  bootstrap: 5
+development:
+  mode: auto

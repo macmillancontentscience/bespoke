@@ -12,6 +12,7 @@ Create hand-crafted baseline models for use in the tidymodels framework. These "
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://macmillancontentscience.github.io/bespoke/}
   \item \url{https://github.com/macmillancontentscience/bespoke}
   \item Report bugs at \url{https://github.com/macmillancontentscience/bespoke/issues}
 }
