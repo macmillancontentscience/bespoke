@@ -12,7 +12,8 @@ Description: Create hand-crafted baseline models for use in the tidymodels
     framework. These "models"" use user-supplied functions to make
     predictions, but can be used (for example) in a tidymodels stack.
 License: Apache License (>= 2)
-URL: https://github.com/macmillancontentscience/bespoke
+URL: https://macmillancontentscience.github.io/bespoke/,
+    https://github.com/macmillancontentscience/bespoke
 BugReports: https://github.com/macmillancontentscience/bespoke/issues
 Imports: 
     hardhat,

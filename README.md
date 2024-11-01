@@ -7,9 +7,13 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/macmillancontentscience/bespoke/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/macmillancontentscience/bespoke/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/bespoke)](https://CRAN.R-project.org/package=bespoke)
 [![Codecov test
 coverage](https://codecov.io/gh/macmillancontentscience/bespoke/branch/main/graph/badge.svg)](https://app.codecov.io/gh/macmillancontentscience/bespoke?branch=main)
+[![R-CMD-check](https://github.com/macmillancontentscience/bespoke/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/macmillancontentscience/bespoke/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Sometimes it makes sense to define a simple baseline model
@@ -21,10 +25,25 @@ that fits within the {tidymodels} framework.
 
 ## Installation
 
-You can install the development version of bespoke from
-[GitHub](https://github.com/) with:
+<div class="pkgdown-release">
+
+Install the released version of bespoke from
+[CRAN](https://cran.r-project.org/):
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("macmillancontentscience/bespoke")
+install.packages("bespoke")
 ```
+
+</div>
+
+<div class="pkgdown-devel">
+
+Install the development version of bespoke from
+[GitHub](https://github.com/):
+
+``` r
+# install.packages("pak")
+pak::pak("macmillancontentscience/bespoke")
+```
+
+</div>
