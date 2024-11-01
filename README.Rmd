@@ -46,3 +46,7 @@ Install the development version of bespoke from [GitHub](https://github.com/):
 pak::pak("macmillancontentscience/bespoke")
 ```
 :::
+
+## Code of Conduct
+
+Please note that the bespoke project is released with a [Contributor Code of Conduct](https://macmillancontentscience.github.io/bespoke/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
