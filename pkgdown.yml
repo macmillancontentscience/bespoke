@@ -1,0 +1,9 @@
+pandoc: 3.1.11
+pkgdown: 2.1.1
+pkgdown_sha: ~
+articles:
+  bespoke: bespoke.html
+last_built: 2024-11-01T21:50Z
+urls:
+  reference: https://macmillancontentscience.github.io/bespoke/reference
+  article: https://macmillancontentscience.github.io/bespoke/articles
