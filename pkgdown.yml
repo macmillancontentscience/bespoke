@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   bespoke: bespoke.html
-last_built: 2024-11-01T22:12Z
+last_built: 2024-11-07T19:42Z
 urls:
   reference: https://macmillancontentscience.github.io/bespoke/reference
   article: https://macmillancontentscience.github.io/bespoke/articles
